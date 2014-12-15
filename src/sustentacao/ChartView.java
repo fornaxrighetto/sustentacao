@@ -18,7 +18,6 @@ import org.primefaces.model.chart.LineChartSeries;
 
 @ManagedBean
 public class ChartView implements Serializable {
-	//tatata
 	//Temm
 	private static final long serialVersionUID = 1L;
 
