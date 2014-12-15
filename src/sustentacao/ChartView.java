@@ -15,7 +15,7 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.DateAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
-//Teste
+//Teste2
 @ManagedBean
 public class ChartView implements Serializable {
 
