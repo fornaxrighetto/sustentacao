@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+	<title>Gráfico</title>
+</h:head>
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="layout-center">
+			<p:layoutUnit position="center">
+				<h:form style="width:1200px;height:473px;">
+					<p:chart type="line" model="#{chartView.zoomModel}"
+						style="height:400px;width:1000px;" widgetVar="chart" />
+					<br />
+					<p:commandButton
+						type="button"
+						value="Resetar Zoom"
+						icon="ui-icon-cancel"
+						onclick="PF('chart').resetZoom()"
+						style="align: center;" />
+				</h:form>
+			</p:layoutUnit>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

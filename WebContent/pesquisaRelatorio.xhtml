@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+	<title>Pesquisa</title>
+</h:head>
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="layout-center">
+			<h:outputScript name="calendario_pt_BR.js" library="js" />
+			<p:layoutUnit position="center">
+				<div style="text-align: center;">
+					<h:form id="form">
+						<h:panelGrid columns="6">
+							<p:outputLabel value="De: " />
+							<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
+								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR" />
+
+							<p:outputLabel value=" até " />
+							<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
+								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR"
+								showButtonPanel="true" navigator="true" />
+
+							<h:outputLabel value="Equipe: " for="equipe" />
+							<p:selectCheckboxMenu id="equipe" label="Selecione "
+								filter="true" filterMatchMode="startsWith">
+								<f:selectItems value="#{equipeMB.listaEquipe}"/>
+							</p:selectCheckboxMenu>
+						</h:panelGrid>
+						<p:commandButton id="btnPesquisar"
+							action="#{relatorioMB.buscarRelatorio}"
+							value="#{msg['botao.pesquisar']}" update="form" ajax="false" />
+
+						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
+							id="btnGrafico" value="Visualizar Gráfico">
+							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
+								value="#{relatorioMB.dataInicio}" />
+							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
+								value="#{relatorioMB.dataFim}" />
+						</p:commandButton>
+
+						<br />
+						<br />
+
+						<p:dataTable id="tblRelatorio"
+							value="#{relatorioMB.listaRelatorio}" var="relatorio"
+							paginator="true" rows="10" rowsPerPageTemplate="10,25,45">
+
+							<p:column headerText="#{msg['coluna.data']}"
+								sortBy="#{relatorio.data}">
+								<h:link id="data" outcome="index"
+									title="Editar registro do dia #{relatorio.data}"
+									value="#{relatorio.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+										for="data" />
+								</h:link>
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.concluido']}"
+								sortBy="#{relatorio.chamadosConcluidos}">
+								#{relatorio.chamadosConcluidos}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.homologacao']}"
+								sortBy="#{relatorio.chamadosEmHomologacao}">
+								#{relatorio.chamadosEmHomologacao}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.aguardando']}"
+								sortBy="#{relatorio.chamadosEmAguardo}">
+								#{relatorio.chamadosEmAguardo}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.aguardando_rdm']}"
+								sortBy="#{relatorio.chamadosAguardandoRdm}">
+								#{relatorio.chamadosAguardandoRdm}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.desenvolvimento']}"
+								sortBy="#{relatorio.chamadosEmDesenvolvimento}">
+								#{relatorio.chamadosEmDesenvolvimento}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.aberto']}"
+								sortBy="#{relatorio.chamadosEmAberto}">
+								#{relatorio.chamadosEmAberto}
+							</p:column>
+
+							<p:column headerText="#{msg['coluna.equipe']}"
+								sortBy="#{relatorio.equipe.descricaoEquipe}">
+								#{relatorio.equipe.descricaoEquipe}
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+			</p:layoutUnit>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
