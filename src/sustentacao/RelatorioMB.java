@@ -26,7 +26,7 @@ public class RelatorioMB implements Serializable {
 
 	private Equipe equipe = new Equipe();
 
-	private List<Long> equipes = new ArrayList<Long>();
+	private String equipes = equipe.getDescricao();
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
@@ -102,11 +102,11 @@ public class RelatorioMB implements Serializable {
 		this.equipe = equipe;
 	}
 
-	public List<Long> getEquipes() {
+	public String getEquipes() {
 		return equipes;
 	}
 
-	public void setEquipes(List<Long> equipes) {
+	public void setEquipes(String equipes) {
 		this.equipes = equipes;
 	}
 
@@ -160,6 +160,17 @@ public class RelatorioMB implements Serializable {
 	}
 
 	public String mostrarGrafico() {
+		// Abrir o grafico em uma nova janela
+
+		// JButton jb = new JButton();
+		//
+		// jb.addActionListener(new ActionListener() {
+		//
+		// public void actionPerformed(ActionEvent e) {
+		// JFrame teste = new JFrame();
+		// teste.setVisible(true);
+		// }
+		// });
 		return "grafico";
 	}
 }

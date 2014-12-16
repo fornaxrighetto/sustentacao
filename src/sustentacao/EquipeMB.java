@@ -10,7 +10,7 @@ import javax.faces.bean.ManagedBean;
 public class EquipeMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Equipe equipe = new Equipe();
+	private List<Equipe> equipe = new ArrayList<Equipe>();
 
 	private List<String> listaEquipe;
 
@@ -22,11 +22,11 @@ public class EquipeMB implements Serializable {
 		listaEquipe.add("SINISTRO");
 	}
 
-	public Equipe getEquipe() {
+	public List<Equipe> getEquipe() {
 		return equipe;
 	}
 
-	public void setEquipe(Equipe equipe) {
+	public void setEquipe(List<Equipe> equipe) {
 		this.equipe = equipe;
 	}
 
