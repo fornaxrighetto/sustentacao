@@ -19,7 +19,7 @@ import org.primefaces.model.chart.LineChartSeries;
 @ManagedBean
 public class ChartView implements Serializable {
 	//Temm
-	private static final long serialVersionUID = 1L; //teste
+	private static final long serialVersionUID = 1L; //danilo
 
 	private LineChartModel zoomModel;
 	
