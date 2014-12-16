@@ -18,7 +18,7 @@ import org.primefaces.model.chart.LineChartSeries;
 
 @ManagedBean
 public class ChartView implements Serializable {
-	//Tem
+	//Teste Fodastico
 	private static final long serialVersionUID = 1L;
 
 	private LineChartModel zoomModel;
