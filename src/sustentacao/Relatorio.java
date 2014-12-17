@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,8 +45,8 @@ public class Relatorio implements Serializable {
 	@Column(name = "aberto")
 	private int chamadosEmAberto;
 
-	@ManyToOne
-	private Equipe equipe;
+	@OneToOne
+	private Equipe descricao_equipe;
 
 	public Long getId() {
 		return id;
@@ -112,11 +112,12 @@ public class Relatorio implements Serializable {
 		this.chamadosEmAberto = chamadosEmAberto;
 	}
 
-	public Equipe getEquipe() {
-		return equipe;
+	public Equipe getDescricao_equipe() {
+		return descricao_equipe;
 	}
 
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
+	public void setDescricao_equipe(Equipe descricao_equipe) {
+		this.descricao_equipe = descricao_equipe;
 	}
+
 }

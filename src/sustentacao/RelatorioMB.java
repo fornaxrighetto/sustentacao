@@ -21,12 +21,11 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 @ManagedBean
 public class RelatorioMB implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
-	private Equipe equipe = new Equipe();
+	private EquipeMB equipe = new EquipeMB();
 
-	private String equipes = equipe.getDescricao();
+	private String equipes = equipe.getEquipe().toString();
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
@@ -94,11 +93,11 @@ public class RelatorioMB implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public Equipe getEquipe() {
+	public EquipeMB getEquipe() {
 		return equipe;
 	}
 
-	public void setEquipe(Equipe equipe) {
+	public void setEquipe(EquipeMB equipe) {
 		this.equipe = equipe;
 	}
 
@@ -124,7 +123,7 @@ public class RelatorioMB implements Serializable {
 	 * @return lista de Relatorio
 	 */
 	public List<Relatorio> buscarRelatorio() {
-		listaRelatorio = relatorioSB.findDate(dataInicio, dataFim, equipes);
+		listaRelatorio = relatorioSB.find(dataInicio, dataFim, equipes);
 		return listaRelatorio;
 	}
 

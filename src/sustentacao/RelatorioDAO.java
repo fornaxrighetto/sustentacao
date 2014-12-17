@@ -32,7 +32,7 @@ public class RelatorioDAO implements Serializable {
 	 * @return lista de Relatorio
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Relatorio> findDate(Date dataInicio, Date dataFim,	String equipes) {
+	public List<Relatorio> find(Date dataInicio, Date dataFim,	String equipes) {
 		List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 		try {
@@ -52,12 +52,12 @@ public class RelatorioDAO implements Serializable {
 			Criteria criteria = session.createCriteria(Relatorio.class, "r");
 			criteria.add(Restrictions.between("r.data", dataInicio, dataFim));
 			// criteria.createCriteria("descricaoEquipe").add(Restrictions.idEq(equipes))criteria;
-			criteria.add(Restrictions.like("r.equipe", equipes));
+			criteria.add(Restrictions.like("r.descricao_equipe", equipes));
 
 			listaRelatorio = criteria.list();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+		}catch (Exception e) {
+	            e.printStackTrace();
+	        }
 		return listaRelatorio;
 	}
 
