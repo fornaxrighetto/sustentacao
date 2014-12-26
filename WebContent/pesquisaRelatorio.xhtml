@@ -28,28 +28,23 @@
 
 							<h:outputLabel value="Equipe: " for="equipe" />
 							<p:selectCheckboxMenu id="equipe" label="Selecione "
-								filter="true" filterMatchMode="startsWith">
-								<f:selectItems value="#{equipeMB.equipe.descricao}" />
+								filter="true" filterMatchMode="startsWith" value="#{relatorioMB.equipes}">
+								<f:selectItems id="descricao"
+									value="#{relatorioMB.listaDescricaoEquipes}" />
 							</p:selectCheckboxMenu>
 						</h:panelGrid>
 						<p:commandButton id="btnPesquisar"
 							action="#{relatorioMB.buscarRelatorio}"
 							value="#{msg['botao.pesquisar']}" ajax="false" />
 
-						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
-							id="btnGrafico" value="Visualizar Gráfico">
-							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
-								value="#{relatorioMB.dataInicio}" />
-							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
-								value="#{relatorioMB.dataFim}" />
-						</p:commandButton>
 
 						<br />
 						<br />
 
 						<p:dataTable id="tblRelatorio"
 							value="#{relatorioMB.listaRelatorio}" var="relatorio"
-							paginator="true" rows="25" rowsPerPageTemplate="10,25,45">
+							paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
+							emptyMessage="Não foram gerados relatórios dentro do período especificado">
 
 							<p:column headerText="#{msg['coluna.data']}"
 								sortBy="#{relatorio.data}">
@@ -96,6 +91,17 @@
 								#{relatorio.equipe.descricaoEquipe}
 							</p:column>
 						</p:dataTable>
+
+						<br />
+						<br />
+
+						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
+							id="btnGrafico" value="Visualizar Gráfico">
+							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
+								value="#{relatorioMB.dataInicio}" />
+							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
+								value="#{relatorioMB.dataFim}" />
+						</p:commandButton>
 					</h:form>
 				</div>
 			</p:layoutUnit>

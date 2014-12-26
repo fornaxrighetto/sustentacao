@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -23,19 +24,33 @@ import javax.faces.context.FacesContext;
 public class RelatorioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private EquipeMB equipe = new EquipeMB();
+	private Equipe equipe = new Equipe();
 
-	private String equipes = equipe.getEquipe().toString();
+	// private String equipes = equipe.getDescricao().toString();
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
 	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
+	
+	private List<Equipe> equipes = new ArrayList<Equipe>();
 
 	private Relatorio relatorio = new Relatorio();
 
 	private Date dataInicio;
 
 	private Date dataFim;
+	
+	private List<String> listaDescricaoEquipes = new ArrayList<String>();
+	
+	@PostConstruct
+	public void init () {
+		EquipesEnum[] values = EquipesEnum.values();
+		for (EquipesEnum equipe : values) {
+			listaDescricaoEquipes.add(equipe.name());
+		}
+	}
+
+	//private EquipeEnum[] equipes = equipe.getDescricao();
 
 	/**
 	 * @return listaRelatorio
@@ -93,21 +108,21 @@ public class RelatorioMB implements Serializable {
 		this.dataFim = dataFim;
 	}
 
-	public EquipeMB getEquipe() {
+	public Equipe getEquipe() {
 		return equipe;
 	}
 
-	public void setEquipe(EquipeMB equipe) {
+	public void setEquipe(Equipe equipe) {
 		this.equipe = equipe;
 	}
 
-	public String getEquipes() {
-		return equipes;
-	}
-
-	public void setEquipes(String equipes) {
-		this.equipes = equipes;
-	}
+//	public EquipeEnum[] getEquipes() {
+//		return equipes;
+//	}
+//
+//	public void setEquipes(EquipeEnum[] equipes) {
+//		this.equipes = equipes;
+//	}
 
 	public RelatorioSB getRelatorioSB() {
 		return relatorioSB;
@@ -172,4 +187,21 @@ public class RelatorioMB implements Serializable {
 		// });
 		return "grafico";
 	}
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
+	}
+
+	public List<String> getListaDescricaoEquipes() {
+		return listaDescricaoEquipes;
+	}
+
+	public void setListaDescricaoEquipes(List<String> listaDescricaoEquipes) {
+		this.listaDescricaoEquipes = listaDescricaoEquipes;
+	}
+
 }

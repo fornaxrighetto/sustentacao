@@ -32,7 +32,7 @@ public class RelatorioDAO implements Serializable {
 	 * @return lista de Relatorio
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Relatorio> find(Date dataInicio, Date dataFim,	String equipes) {
+	public List<Relatorio> find(Date dataInicio, Date dataFim,	List<Equipe> equipes) {
 		List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 		try {
@@ -48,14 +48,15 @@ public class RelatorioDAO implements Serializable {
 
 			EntityManager em = JPAUtil.getEntityManager();
 			Session session = em.unwrap(Session.class);
-
+			
 			Criteria criteria = session.createCriteria(Relatorio.class, "r");
 			criteria.add(Restrictions.between("r.data", dataInicio, dataFim));
 			// criteria.createCriteria("descricaoEquipe").add(Restrictions.idEq(equipes))criteria;
-			criteria.add(Restrictions.like("r.descricao_equipe", equipes));
+			criteria.add(Restrictions.in("r.descricao_equipe", equipes));
+			
 
 			listaRelatorio = criteria.list();
-		}catch (Exception e) {
+		} catch (Exception e) {
 	            e.printStackTrace();
 	        }
 		return listaRelatorio;

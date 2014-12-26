@@ -21,12 +21,13 @@ public class ChartView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private LineChartModel zoomModel;
-	
+
 	@ManagedProperty(value = "#{flash.keep.dataInicio}")
 	private Date dataInicio;
+	
 	@ManagedProperty(value = "#{flash.keep.dataFim}")
 	private Date dataFim;
-	
+
 	@PostConstruct
 	public void init() {
 		createZoomModel();
@@ -38,7 +39,7 @@ public class ChartView implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	protected void createZoomModel() {
-		
+
 		zoomModel = new LineChartModel();
 
 		EntityManager em = JPAUtil.getEntityManager();
@@ -110,7 +111,7 @@ public class ChartView implements Serializable {
 		return dataInicio;
 	}
 
-	public void setDataIni(Date dataInicio) {
+	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
@@ -121,6 +122,5 @@ public class ChartView implements Serializable {
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
-	
-	
+
 }

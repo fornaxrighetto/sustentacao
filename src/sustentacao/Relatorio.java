@@ -2,25 +2,27 @@ package sustentacao;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tbl_relatorio")
+@NamedQuery(name = "findDate", query = "select r from Relatorio r where r.data = r.data")
 public class Relatorio implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
+	@Column(name = "id_relatorio")
 	private Long id;
 
 	@Temporal(TemporalType.DATE)
@@ -45,8 +47,8 @@ public class Relatorio implements Serializable {
 	@Column(name = "aberto")
 	private int chamadosEmAberto;
 
-	@OneToOne
-	private Equipe descricao_equipe;
+	@OneToMany (mappedBy = "relatorio")
+	private List<Equipe> descricao_equipe;
 
 	public Long getId() {
 		return id;
@@ -112,11 +114,11 @@ public class Relatorio implements Serializable {
 		this.chamadosEmAberto = chamadosEmAberto;
 	}
 
-	public Equipe getDescricao_equipe() {
+	public List<Equipe> getDescricao_equipe() {
 		return descricao_equipe;
 	}
 
-	public void setDescricao_equipe(Equipe descricao_equipe) {
+	public void setDescricao_equipe(List<Equipe> descricao_equipe) {
 		this.descricao_equipe = descricao_equipe;
 	}
 
