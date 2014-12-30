@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -32,7 +33,7 @@ public class RelatorioDAO implements Serializable {
 	 * @return lista de Relatorio
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Relatorio> find(Date dataInicio, Date dataFim,	List<Equipe> equipes) {
+	public List<Relatorio> find(Date dataInicio, Date dataFim,	List<String> equipes) {
 		List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 		try {
@@ -52,7 +53,9 @@ public class RelatorioDAO implements Serializable {
 			Criteria criteria = session.createCriteria(Relatorio.class, "r");
 			criteria.add(Restrictions.between("r.data", dataInicio, dataFim));
 			// criteria.createCriteria("descricaoEquipe").add(Restrictions.idEq(equipes))criteria;
-			criteria.add(Restrictions.in("r.descricao_equipe", equipes));
+			criteria.setFetchMode("r.equipes", FetchMode.JOIN);
+			criteria.createAlias("r.equipes", "equipe");
+			criteria.add(Restrictions.in("equipe.descricao", equipes));
 			
 
 			listaRelatorio = criteria.list();

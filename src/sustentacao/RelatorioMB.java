@@ -31,26 +31,26 @@ public class RelatorioMB implements Serializable {
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
 	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
-	
-	private List<Equipe> equipes = new ArrayList<Equipe>();
+
+	private List<String> equipes = new ArrayList<String>();
 
 	private Relatorio relatorio = new Relatorio();
 
 	private Date dataInicio;
 
 	private Date dataFim;
-	
+
 	private List<String> listaDescricaoEquipes = new ArrayList<String>();
-	
+
 	@PostConstruct
-	public void init () {
+	public void init() {
 		EquipesEnum[] values = EquipesEnum.values();
 		for (EquipesEnum equipe : values) {
 			listaDescricaoEquipes.add(equipe.name());
 		}
 	}
 
-	//private EquipeEnum[] equipes = equipe.getDescricao();
+	// private EquipeEnum[] equipes = equipe.getDescricao();
 
 	/**
 	 * @return listaRelatorio
@@ -116,13 +116,13 @@ public class RelatorioMB implements Serializable {
 		this.equipe = equipe;
 	}
 
-//	public EquipeEnum[] getEquipes() {
-//		return equipes;
-//	}
-//
-//	public void setEquipes(EquipeEnum[] equipes) {
-//		this.equipes = equipes;
-//	}
+	// public EquipeEnum[] getEquipes() {
+	// return equipes;
+	// }
+	//
+	// public void setEquipes(EquipeEnum[] equipes) {
+	// this.equipes = equipes;
+	// }
 
 	public RelatorioSB getRelatorioSB() {
 		return relatorioSB;
@@ -188,11 +188,11 @@ public class RelatorioMB implements Serializable {
 		return "grafico";
 	}
 
-	public List<Equipe> getEquipes() {
+	public List<String> getEquipes() {
 		return equipes;
 	}
 
-	public void setEquipes(List<Equipe> equipes) {
+	public void setEquipes(List<String> equipes) {
 		this.equipes = equipes;
 	}
 

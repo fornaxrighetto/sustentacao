@@ -15,5 +15,4 @@ public enum EquipesEnum {
 	public Long getCodigo() {
 		return codigo;
 	}
-	
 }

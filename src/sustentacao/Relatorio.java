@@ -47,8 +47,9 @@ public class Relatorio implements Serializable {
 	@Column(name = "aberto")
 	private int chamadosEmAberto;
 
-	@OneToMany (mappedBy = "relatorio")
-	private List<Equipe> descricao_equipe;
+	@Column(name="equipes")
+	@OneToMany(mappedBy = "relatorio")
+	private List<Equipe> equipes;
 
 	public Long getId() {
 		return id;
@@ -114,12 +115,12 @@ public class Relatorio implements Serializable {
 		this.chamadosEmAberto = chamadosEmAberto;
 	}
 
-	public List<Equipe> getDescricao_equipe() {
-		return descricao_equipe;
+	public List<Equipe> getEquipes() {
+		return equipes;
 	}
 
-	public void setDescricao_equipe(List<Equipe> descricao_equipe) {
-		this.descricao_equipe = descricao_equipe;
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
 	}
 
 }
