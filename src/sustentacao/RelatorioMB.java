@@ -26,31 +26,102 @@ public class RelatorioMB implements Serializable {
 
 	private Equipe equipe = new Equipe();
 
-	// private String equipes = equipe.getDescricao().toString();
-
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
 	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 	private List<String> equipes = new ArrayList<String>();
 
+	private String equipeEscolhida;
+
 	private Relatorio relatorio = new Relatorio();
 
 	private Date dataInicio;
 
 	private Date dataFim;
+	
+	private List<Equipe> listaEquipe;
 
 	private List<String> listaDescricaoEquipes = new ArrayList<String>();
 
 	@PostConstruct
 	public void init() {
-		EquipesEnum[] values = EquipesEnum.values();
-		for (EquipesEnum equipe : values) {
-			listaDescricaoEquipes.add(equipe.name());
+		listaEquipe = relatorioSB.findAll();
+		for (Equipe equipe : listaEquipe) {
+			listaDescricaoEquipes.add(equipe.getDescricao());
 		}
 	}
 
-	// private EquipeEnum[] equipes = equipe.getDescricao();
+	/**
+	 * Pesquisa no banco de acordo com filtro informado
+	 * 
+	 * @return lista de Relatorio
+	 */
+	public List<Relatorio> buscarRelatorio() {
+		listaRelatorio = relatorioSB.find(dataInicio, dataFim, equipes);
+		return listaRelatorio;
+	}
+
+	/**
+	 * Recupera os dados da tela para armazena-los no banco
+	 * 
+	 */
+	public void salvarRelatorio() {
+		for (Equipe equipe : listaEquipe) {
+			if (equipe.getDescricao().equals(equipeEscolhida)) {
+//				this.relatorio.setEquipe(equipe);
+				relatorioSB.insert(relatorio, equipe);
+				msgSalvo();
+			}
+		}
+		
+
+		if (relatorio != null) {
+			limparRelatorio();
+		}
+	}
+
+	/**
+	 * Exibe a mensagem "Salvo com sucesso"
+	 */
+	public void msgSalvo() {
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Salvo com sucesso", ""));
+	}
+	
+	/**
+	 * Exibe a mensagem "Salvo com sucesso"
+	 */
+	public void msgNaoSalvo() {
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO,
+						"Falha ao salvar", ""));
+	}
+
+	/**
+	 * Limpa os dados do Relatorio que estão na tela
+	 */
+	public void limparRelatorio() {
+		relatorio = new Relatorio();
+	}
+
+	public String mostrarGrafico() {
+		// Abrir o grafico em uma nova janela
+
+		// JButton jb = new JButton();
+		//
+		// jb.addActionListener(new ActionListener() {
+		//
+		// public void actionPerformed(ActionEvent e) {
+		// JFrame teste = new JFrame();
+		// teste.setVisible(true);
+		// }
+		// });
+		return "grafico";
+	}
 
 	/**
 	 * @return listaRelatorio
@@ -116,76 +187,12 @@ public class RelatorioMB implements Serializable {
 		this.equipe = equipe;
 	}
 
-	// public EquipeEnum[] getEquipes() {
-	// return equipes;
-	// }
-	//
-	// public void setEquipes(EquipeEnum[] equipes) {
-	// this.equipes = equipes;
-	// }
-
 	public RelatorioSB getRelatorioSB() {
 		return relatorioSB;
 	}
 
 	public void setRelatorioSB(RelatorioSB relatorioSB) {
 		this.relatorioSB = relatorioSB;
-	}
-
-	/**
-	 * Pesquisa no banco de acordo com filtro informado
-	 * 
-	 * @return lista de Relatorio
-	 */
-	public List<Relatorio> buscarRelatorio() {
-		listaRelatorio = relatorioSB.find(dataInicio, dataFim, equipes);
-		return listaRelatorio;
-	}
-
-	/**
-	 * Recupera os dados da tela para armazena-los no banco
-	 * 
-	 */
-	public void salvarRelatorio() {
-		relatorioSB.insert(relatorio);
-
-		msgSalvo();
-
-		if (relatorio != null) {
-			limparRelatorio();
-		}
-	}
-
-	/**
-	 * Exibe a mensagem "Salvo com sucesso"
-	 */
-	public void msgSalvo() {
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,
-						"Salvo com sucesso", ""));
-	}
-
-	/**
-	 * Limpa os dados do Relatorio que estão na tela
-	 */
-	public void limparRelatorio() {
-		relatorio = new Relatorio();
-	}
-
-	public String mostrarGrafico() {
-		// Abrir o grafico em uma nova janela
-
-		// JButton jb = new JButton();
-		//
-		// jb.addActionListener(new ActionListener() {
-		//
-		// public void actionPerformed(ActionEvent e) {
-		// JFrame teste = new JFrame();
-		// teste.setVisible(true);
-		// }
-		// });
-		return "grafico";
 	}
 
 	public List<String> getEquipes() {
@@ -202,6 +209,14 @@ public class RelatorioMB implements Serializable {
 
 	public void setListaDescricaoEquipes(List<String> listaDescricaoEquipes) {
 		this.listaDescricaoEquipes = listaDescricaoEquipes;
+	}
+
+	public String getEquipeEscolhida() {
+		return equipeEscolhida;
+	}
+
+	public void setEquipeEscolhida(String equipeEscolhida) {
+		this.equipeEscolhida = equipeEscolhida;
 	}
 
 }

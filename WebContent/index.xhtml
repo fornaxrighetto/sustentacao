@@ -61,12 +61,18 @@
 								id="aberto" required="true"
 								requiredMessage="Aberto: Campo obrigatório" mask="99" />
 
+							<p:outputLabel value="#{msg['campo.equipe']}" for="campo_equipes" />
+							<p:selectOneMenu value="#{relatorioMB.equipeEscolhida}" id="campo_equipes"
+								required="true"  requiredMessage="Equipe: Selecione uma Equipe">
+								<f:selectItems value="#{relatorioMB.listaDescricaoEquipes}" />
+							</p:selectOneMenu>
+
 							<h:outputText value="&#160;" />
 							<h:outputText value="&#160;" />
 							<br />
 							<h:panelGroup>
 								<p:commandButton id="btnSalvar" value="#{msg['botao.salvar']}"
-									update="grid growl" action="#{relatorioMB.salvarRelatorio}" />
+									update="grid growl" action="#{relatorioMB.salvarRelatorio}"/>
 								<p:commandButton id="btnLimpar" value="#{msg['botao.limpar']}"
 									update="grid growl" action="#{relatorioMB.limparRelatorio}"
 									resetValues="true" immediate="true" />

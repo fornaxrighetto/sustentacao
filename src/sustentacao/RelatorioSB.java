@@ -4,15 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Classe responsavel pela Regra de Negocio
+ * 
+ * @author Lucas Henrique de Sousa
+ * 
+ * @version 1.0
+ */
 public class RelatorioSB implements Serializable {
-
-	/**
-	 * Classe responsavel pela Regra de Negocio
-	 * 
-	 * @author Lucas Henrique de Sousa
-	 * 
-	 * @version 1.0
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -34,8 +33,13 @@ public class RelatorioSB implements Serializable {
 	 * 
 	 * @param dados inseridos na tela pelo usuario
 	 */
-	public void insert(Relatorio relatorio) {
+	public void insert(Relatorio relatorio, Equipe equipe) {
 		RelatorioDAO dao = new RelatorioDAO();
-		dao.insert(relatorio);
+		dao.insert(relatorio, equipe);
+	}
+	
+	public List<Equipe> findAll(){
+		RelatorioDAO dao = new RelatorioDAO();
+		return dao.findAll();
 	}
 }

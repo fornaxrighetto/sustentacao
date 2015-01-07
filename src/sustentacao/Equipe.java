@@ -27,7 +27,7 @@ public class Equipe implements Serializable {
 	private String status;
 	
 	@ManyToOne
-	@JoinColumn(name="id_relatorio")
+	@JoinColumn(name = "id_relatorio")
 	private Relatorio relatorio;
 
 	public Long getId() {
@@ -61,6 +61,4 @@ public class Equipe implements Serializable {
 	public void setRelatorio(Relatorio relatorio) {
 		this.relatorio = relatorio;
 	}
-
-
 }
