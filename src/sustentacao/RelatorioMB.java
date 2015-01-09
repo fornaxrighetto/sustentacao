@@ -6,10 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Classe responsavel pela comunicacao do modelo com a view
@@ -19,30 +17,28 @@ import javax.faces.context.FacesContext;
  * @version 1.0
  */
 
-@ViewScoped
+@SessionScoped
 @ManagedBean
 public class RelatorioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private Equipe equipe = new Equipe();
+	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
-	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
+	private Equipe equipe = new Equipe();
 
 	private List<String> equipes = new ArrayList<String>();
 
-	private String equipeEscolhida;
+	private List<Equipe> listaEquipe;
 
-	private Relatorio relatorio = new Relatorio();
+	private List<String> listaDescricaoEquipes = new ArrayList<String>();
+
+	private String equipeEscolhida;
 
 	private Date dataInicio;
 
 	private Date dataFim;
-	
-	private List<Equipe> listaEquipe;
-
-	private List<String> listaDescricaoEquipes = new ArrayList<String>();
 
 	@PostConstruct
 	public void init() {
@@ -62,51 +58,15 @@ public class RelatorioMB implements Serializable {
 		return listaRelatorio;
 	}
 
-	/**
-	 * Recupera os dados da tela para armazena-los no banco
-	 * 
-	 */
-	public void salvarRelatorio() {
-		for (Equipe equipe : listaEquipe) {
-			if (equipe.getDescricao().equals(equipeEscolhida)) {
-//				this.relatorio.setEquipe(equipe);
-				relatorioSB.insert(relatorio, equipe);
-				msgSalvo();
-			}
-		}
-		
-
-		if (relatorio != null) {
-			limparRelatorio();
-		}
-	}
-
-	/**
-	 * Exibe a mensagem "Salvo com sucesso"
-	 */
-	public void msgSalvo() {
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,
-						"Salvo com sucesso", ""));
-	}
-	
-	/**
-	 * Exibe a mensagem "Salvo com sucesso"
-	 */
-	public void msgNaoSalvo() {
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,
-						"Falha ao salvar", ""));
-	}
-
-	/**
-	 * Limpa os dados do Relatorio que estão na tela
-	 */
-	public void limparRelatorio() {
-		relatorio = new Relatorio();
-	}
+	// /**
+	// * Exibe a mensagem "Salvo com sucesso"
+	// */
+	// public void msgNaoSalvo() {
+	// FacesContext.getCurrentInstance().addMessage(
+	// null,
+	// new FacesMessage(FacesMessage.SEVERITY_INFO,
+	// "Falha ao salvar", ""));
+	// }
 
 	public String mostrarGrafico() {
 		// Abrir o grafico em uma nova janela
@@ -123,68 +83,12 @@ public class RelatorioMB implements Serializable {
 		return "grafico";
 	}
 
-	/**
-	 * @return listaRelatorio
-	 */
 	public List<Relatorio> getListaRelatorio() {
 		return listaRelatorio;
 	}
 
-	/**
-	 * @param listaRelatorio
-	 */
 	public void setListaRelatorio(List<Relatorio> listaRelatorio) {
 		this.listaRelatorio = listaRelatorio;
-	}
-
-	/**
-	 * @return relatorio
-	 */
-	public Relatorio getRelatorio() {
-		return relatorio;
-	}
-
-	/**
-	 * @param relatorio
-	 */
-	public void setRelatorio(Relatorio relatorio) {
-		this.relatorio = relatorio;
-	}
-
-	/**
-	 * @return dataInicio
-	 */
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-
-	/**
-	 * @param dataInicio
-	 */
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	/**
-	 * @return dataFim
-	 */
-	public Date getDataFim() {
-		return dataFim;
-	}
-
-	/**
-	 * @param dataFim
-	 */
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
-	}
-
-	public Equipe getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
 	}
 
 	public RelatorioSB getRelatorioSB() {
@@ -195,12 +99,28 @@ public class RelatorioMB implements Serializable {
 		this.relatorioSB = relatorioSB;
 	}
 
+	public Equipe getEquipe() {
+		return equipe;
+	}
+
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
+	}
+
 	public List<String> getEquipes() {
 		return equipes;
 	}
 
 	public void setEquipes(List<String> equipes) {
 		this.equipes = equipes;
+	}
+
+	public List<Equipe> getListaEquipe() {
+		return listaEquipe;
+	}
+
+	public void setListaEquipe(List<Equipe> listaEquipe) {
+		this.listaEquipe = listaEquipe;
 	}
 
 	public List<String> getListaDescricaoEquipes() {
@@ -219,4 +139,19 @@ public class RelatorioMB implements Serializable {
 		this.equipeEscolhida = equipeEscolhida;
 	}
 
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
 }

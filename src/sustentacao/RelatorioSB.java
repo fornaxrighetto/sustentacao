@@ -33,9 +33,9 @@ public class RelatorioSB implements Serializable {
 	 * 
 	 * @param dados inseridos na tela pelo usuario
 	 */
-	public void insert(Relatorio relatorio, Equipe equipe) {
+	public void insert(Relatorio relatorio) {
 		RelatorioDAO dao = new RelatorioDAO();
-		dao.insert(relatorio, equipe);
+		dao.insert(relatorio);
 	}
 	
 	public List<Equipe> findAll(){

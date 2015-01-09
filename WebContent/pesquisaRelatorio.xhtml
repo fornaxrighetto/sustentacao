@@ -28,7 +28,8 @@
 
 							<h:outputLabel value="Equipe: " for="equipe" />
 							<p:selectCheckboxMenu id="equipe" label="Selecione "
-								filter="true" filterMatchMode="startsWith" value="#{relatorioMB.equipes}">
+								filter="true" filterMatchMode="startsWith"
+								value="#{relatorioMB.equipes}">
 								<f:selectItems id="descricao"
 									value="#{relatorioMB.listaDescricaoEquipes}" />
 							</p:selectCheckboxMenu>
@@ -36,7 +37,6 @@
 						<p:commandButton id="btnPesquisar"
 							action="#{relatorioMB.buscarRelatorio}"
 							value="#{msg['botao.pesquisar']}" ajax="false" />
-
 
 						<br />
 						<br />

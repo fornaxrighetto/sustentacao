@@ -63,12 +63,11 @@ public class RelatorioDAO implements Serializable {
 	 * @param dados
 	 *            inseridos na tela pelo usuario
 	 */
-	public void insert(Relatorio relatorio, Equipe equipe) {
+	public void insert(Relatorio relatorio) {
 		EntityManager em = JPAUtil.getEntityManager();
 		try {
 			em.getTransaction().begin();
 			em.persist(relatorio);
-			em.persist(equipe);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();

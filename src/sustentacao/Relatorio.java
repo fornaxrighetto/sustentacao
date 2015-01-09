@@ -14,7 +14,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tbl_relatorio")
-//@NamedQuery(name = "findDate", query = "select r from Relatorio r where r.data = r.data")
+// @NamedQuery(name = "findDate", query =
+// "select r from Relatorio r where r.data = r.data")
 public class Relatorio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -46,7 +47,7 @@ public class Relatorio implements Serializable {
 	private int chamadosEmAberto;
 
 	@OneToOne
-	private Equipe equipe;
+	private Equipe descricao;
 
 	public Long getId() {
 		return id;
@@ -112,12 +113,12 @@ public class Relatorio implements Serializable {
 		this.chamadosEmAberto = chamadosEmAberto;
 	}
 
-	public Equipe getEquipe() {
-		return equipe;
+	public Equipe getDescricao() {
+		return descricao;
 	}
 
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
+	public void setDescricao(Equipe descricao) {
+		this.descricao = descricao;
 	}
-	
+
 }

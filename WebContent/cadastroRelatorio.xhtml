@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+	<title>Relatório Sustentação</title>
+</h:head>
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="layout-center">
+			<h:outputScript name="calendario_pt_BR.js" library="js" />
+			<p:layoutUnit position="center" header="Cadastro">
+				<p:separator />
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
+					<div id="geral" align="left">
+						<h:panelGrid columns="2" id="grid">
+							<p:outputLabel value="#{msg['campo.data']}" for="data" />
+							<p:calendar value="#{cadastroRelatorioMB.relatorio.data}"
+								id="data" pattern="dd/MM/yyyy" required="true"
+								requiredMessage="Data: Campo Obrigatório" mask="true"
+								locale="pt_BR" showButtonPanel="true" navigator="true" />
+
+							<p:outputLabel value="#{msg['campo.concluido']}" for="concluido" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosConcluidos}"
+								id="concluido" required="true"
+								requiredMessage="Concluído: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.homologacao']}"
+								for="homologacao" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosEmHomologacao}"
+								id="homologacao" required="true"
+								requiredMessage="Homologação: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.aguardando']}"
+								for="aguardando" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosEmAguardo}"
+								id="aguardando" required="true"
+								requiredMessage="Aguardando: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.aguardando_rdm']}"
+								for="aguardando_rdm" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosAguardandoRdm}"
+								id="aguardando_rdm" required="true"
+								requiredMessage="Aguardando RDM: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.desenvolvimento']}"
+								for="desenvolvimento" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosEmDesenvolvimento}"
+								id="desenvolvimento" required="true"
+								requiredMessage="Desenvolvimento: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.aberto']}" for="aberto" />
+							<p:inputMask
+								value="#{cadastroRelatorioMB.relatorio.chamadosEmAberto}"
+								id="aberto" required="true"
+								requiredMessage="Aberto: Campo obrigatório" mask="99" />
+
+							<p:outputLabel value="#{msg['campo.equipe']}" for="campo_equipes" />
+							<p:selectOneMenu value="#{cadastroRelatorioMB.equipeEscolhida}"
+								id="campo_equipes" required="true"
+								requiredMessage="Equipe: Selecione uma Equipe">
+								<f:selectItems
+									value="#{cadastroRelatorioMB.listaDescricaoEquipes}" />
+							</p:selectOneMenu>
+
+							<h:outputText value="&#160;" />
+							<h:outputText value="&#160;" />
+							<br />
+							<h:panelGroup>
+								<p:commandButton id="btnSalvar" value="#{msg['botao.salvar']}"
+									update="grid growl"
+									action="#{cadastroRelatorioMB.salvarRelatorio}" />
+								<p:commandButton id="btnLimpar" value="#{msg['botao.limpar']}"
+									update="grid growl"
+									action="#{cadastroRelatorioMB.limparRelatorio}"
+									resetValues="true" immediate="true" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</div>
+				</h:form>
+			</p:layoutUnit>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
