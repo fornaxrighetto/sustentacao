@@ -69,6 +69,7 @@
 							<p:selectOneMenu value="#{cadastroRelatorioMB.equipeEscolhida}"
 								id="campo_equipes" required="true"
 								requiredMessage="Equipe: Selecione uma Equipe">
+								<f:selectItem noSelectionOption="true" />
 								<f:selectItems
 									value="#{cadastroRelatorioMB.listaDescricaoEquipes}" />
 							</p:selectOneMenu>
