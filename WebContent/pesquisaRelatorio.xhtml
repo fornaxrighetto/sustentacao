@@ -19,7 +19,8 @@
 						<h:panelGrid columns="6">
 							<p:outputLabel value="De: " />
 							<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
-								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR" />
+								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR"
+								showButtonPanel="true" navigator="true" />
 
 							<p:outputLabel value=" até " />
 							<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
@@ -46,47 +47,45 @@
 							paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
 							emptyMessage="Não foram gerados relatórios dentro do período especificado">
 
-							<p:column headerText="#{msg['coluna.data']}"
-								sortBy="#{relatorio.data}">
-								<h:link id="data" outcome="index"
-									title="Editar registro do dia #{relatorio.data}"
-									value="#{relatorio.data}">
-									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
-										for="data" />
-								</h:link>
+							<p:column headerText="data" sortBy="#{relatorio.data}">
+									#{relatorio.data}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.concluido']}"
+							<p:column id="concluido" headerText="#{msg['coluna.concluido']}"
 								sortBy="#{relatorio.chamadosConcluidos}">
 								#{relatorio.chamadosConcluidos}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.homologacao']}"
+							<p:column id="homologacao"
+								headerText="#{msg['coluna.homologacao']}"
 								sortBy="#{relatorio.chamadosEmHomologacao}">
 								#{relatorio.chamadosEmHomologacao}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.aguardando']}"
+							<p:column id="aguardando"
+								headerText="#{msg['coluna.aguardando']}"
 								sortBy="#{relatorio.chamadosEmAguardo}">
 								#{relatorio.chamadosEmAguardo}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.aguardando_rdm']}"
+							<p:column id="aguardando_rdm"
+								headerText="#{msg['coluna.aguardando_rdm']}"
 								sortBy="#{relatorio.chamadosAguardandoRdm}">
 								#{relatorio.chamadosAguardandoRdm}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.desenvolvimento']}"
+							<p:column id="desenvolvimento"
+								headerText="#{msg['coluna.desenvolvimento']}"
 								sortBy="#{relatorio.chamadosEmDesenvolvimento}">
 								#{relatorio.chamadosEmDesenvolvimento}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.aberto']}"
+							<p:column id="aberto" headerText="#{msg['coluna.aberto']}"
 								sortBy="#{relatorio.chamadosEmAberto}">
 								#{relatorio.chamadosEmAberto}
 							</p:column>
 
-							<p:column headerText="#{msg['coluna.equipe']}"
+							<p:column id="equipe" headerText="#{msg['coluna.equipe']}"
 								sortBy="#{relatorio.descricao.descricao}">
 								#{relatorio.descricao.descricao}
 							</p:column>
@@ -96,7 +95,7 @@
 						<br />
 
 						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
-							id="btnGrafico" value="Visualizar Gráfico">
+							id="btnGrafico" value="Visualizar Gráfico" immediate="true">
 							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
 								value="#{relatorioMB.dataInicio}" />
 							<f:setPropertyActionListener target="#{flash.keep.dataFim}"

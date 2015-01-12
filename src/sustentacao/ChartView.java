@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -16,6 +17,7 @@ import org.primefaces.model.chart.DateAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+@ViewScoped
 @ManagedBean
 public class ChartView implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -43,7 +45,7 @@ public class ChartView implements Serializable {
 		zoomModel = new LineChartModel();
 
 		EntityManager em = JPAUtil.getEntityManager();
-		Query query = em.createNamedQuery("Relatorio.findDate");
+		Query query = em.createNamedQuery("Relatorio.findDate", Relatorio.class);
 
 		query.setParameter("dataInicio", dataInicio);
 		query.setParameter("dataFim", dataFim);
