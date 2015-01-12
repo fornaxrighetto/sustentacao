@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+<body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="layout-center">
+			<p:layoutUnit position="center" header="Cadastro">
+				<p:separator />
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
+					<div id="geral" align="left">
+						<h:panelGrid columns="2" id="grid">
+
+							<p:outputLabel value="Nome: " for="nome" />
+							<p:inputText value="#{}" id="nome"
+								required="true" requiredMessage="Nome: Campo obrigatório" />
+
+							<p:outputLabel value="Status: " for="status" />
+							<p:selectOneMenu value="#{}" id="status"
+								required="true" requiredMessage="Equipe: Selecione uma Equipe">
+								<f:selectItems value="#{}" />
+							</p:selectOneMenu>
+
+							<h:outputText value="&#160;" />
+							<h:outputText value="&#160;" />
+							<br />
+							<h:panelGroup>
+								<p:commandButton id="btnSalvar" value="" action="" />
+								<p:commandButton id="btnLimpar" value="" action=""
+									resetValues="true" immediate="true" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</div>
+				</h:form>
+			</p:layoutUnit>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

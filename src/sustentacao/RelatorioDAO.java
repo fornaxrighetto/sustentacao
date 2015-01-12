@@ -46,8 +46,8 @@ public class RelatorioDAO implements Serializable {
 
 			Criteria criteria = session.createCriteria(Relatorio.class, "r");
 			criteria.add(Restrictions.between("r.data", dataInicio, dataFim));
-			criteria.setFetchMode("r.equipes", FetchMode.JOIN);
-			criteria.createAlias("r.equipes", "equipe");
+			criteria.setFetchMode("r.descricao", FetchMode.JOIN);
+			criteria.createAlias("r.descricao", "equipe");
 			criteria.add(Restrictions.in("equipe.descricao", equipes));
 
 			listaRelatorio = criteria.list();

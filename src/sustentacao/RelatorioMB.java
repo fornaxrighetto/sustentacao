@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  * Classe responsavel pela comunicacao do modelo com a view
@@ -17,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  * @version 1.0
  */
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
 public class RelatorioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
