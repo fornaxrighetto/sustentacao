@@ -42,6 +42,15 @@ public class CadastroRelatorioMB {
 				relatorioSB.insert(relatorio);
 				msgSalvo();
 			}
+			// /**
+			// * Exibe a mensagem "Salvo com sucesso"
+			// */
+			// public void msgNaoSalvo() {
+			// FacesContext.getCurrentInstance().addMessage(
+			// null,
+			// new FacesMessage(FacesMessage.SEVERITY_INFO,
+			// "Falha ao salvar", ""));
+			// }
 		}
 
 		if (relatorio != null) {

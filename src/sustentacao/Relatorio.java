@@ -58,7 +58,7 @@ public class Relatorio implements Serializable {
 	}
 
 	public Date getData() {
-		return data;
+		return this.data;
 	}
 
 	public void setData(Date data) {

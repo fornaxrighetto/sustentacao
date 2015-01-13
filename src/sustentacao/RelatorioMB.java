@@ -58,16 +58,6 @@ public class RelatorioMB implements Serializable {
 		return listaRelatorio;
 	}
 
-	// /**
-	// * Exibe a mensagem "Salvo com sucesso"
-	// */
-	// public void msgNaoSalvo() {
-	// FacesContext.getCurrentInstance().addMessage(
-	// null,
-	// new FacesMessage(FacesMessage.SEVERITY_INFO,
-	// "Falha ao salvar", ""));
-	// }
-
 	public String mostrarGrafico() {
 		// Abrir o grafico em uma nova janela
 

@@ -47,9 +47,10 @@
 							paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
 							emptyMessage="Não foram gerados relatórios dentro do período especificado">
 
-							<p:column headerText="data" sortBy="#{relatorio.data}">
-									#{relatorio.data}
+							<p:column headerText="#{msg['coluna.data']}" sortBy="#{relatorio.data}">
+									#{relatorioMB.data}
 							</p:column>
+						
 
 							<p:column id="concluido" headerText="#{msg['coluna.concluido']}"
 								sortBy="#{relatorio.chamadosConcluidos}">
@@ -95,7 +96,7 @@
 						<br />
 
 						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
-							id="btnGrafico" value="Visualizar Gráfico" immediate="true">
+							id="btnGrafico" value="Visualizar Gráfico">
 							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
 								value="#{relatorioMB.dataInicio}" />
 							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
