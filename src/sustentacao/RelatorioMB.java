@@ -22,6 +22,8 @@ import javax.faces.bean.ViewScoped;
 public class RelatorioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Relatorio relatorio = new Relatorio();
+
 	private List<Relatorio> listaRelatorio = new ArrayList<Relatorio>();
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
@@ -71,6 +73,14 @@ public class RelatorioMB implements Serializable {
 		// }
 		// });
 		return "grafico";
+	}
+
+	public Relatorio getRelatorio() {
+		return relatorio;
+	}
+
+	public void setRelatorio(Relatorio relatorio) {
+		this.relatorio = relatorio;
 	}
 
 	public List<Relatorio> getListaRelatorio() {

@@ -16,28 +16,32 @@
 			<p:layoutUnit position="center">
 				<div style="text-align: center;">
 					<h:form id="form">
+						<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
 						<h:panelGrid columns="6">
 							<p:outputLabel value="De: " />
 							<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
-								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR"
+								mask="true" pattern="dd/MM/yyyy" required="true"
+								requiredMessage="Escolha a data Inicio" locale="pt_BR"
 								showButtonPanel="true" navigator="true" />
 
 							<p:outputLabel value=" até " />
 							<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
-								mask="true" pattern="dd/MM/yyyy" required="true" locale="pt_BR"
+								mask="true" pattern="dd/MM/yyyy" required="true"
+								requiredMessage="Escolha a data Final" locale="pt_BR"
 								showButtonPanel="true" navigator="true" />
 
 							<h:outputLabel value="Equipe: " for="equipe" />
 							<p:selectCheckboxMenu id="equipe" label="Selecione "
 								filter="true" filterMatchMode="startsWith"
-								value="#{relatorioMB.equipes}">
+								value="#{relatorioMB.equipes}" required="true"
+								requiredMessage="Escolha ao menos uma Equipe">
 								<f:selectItems id="descricao"
 									value="#{relatorioMB.listaDescricaoEquipes}" />
 							</p:selectCheckboxMenu>
 						</h:panelGrid>
 						<p:commandButton id="btnPesquisar"
 							action="#{relatorioMB.buscarRelatorio}"
-							value="#{msg['botao.pesquisar']}" ajax="false" />
+							value="#{msg['botao.pesquisar']}" update="growl" ajax="false" />
 
 						<br />
 						<br />
@@ -47,10 +51,12 @@
 							paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
 							emptyMessage="Não foram gerados relatórios dentro do período especificado">
 
-							<p:column headerText="#{msg['coluna.data']}" sortBy="#{relatorio.data}">
-									#{relatorioMB.data}
+							<p:column id="data" headerText="#{msg['coluna.data']}"
+								sortBy="#{relatorio.data}">
+								<p:outputLabel value="#{relatorio.data}" for="data">
+									<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+								</p:outputLabel>
 							</p:column>
-						
 
 							<p:column id="concluido" headerText="#{msg['coluna.concluido']}"
 								sortBy="#{relatorio.chamadosConcluidos}">
@@ -96,7 +102,7 @@
 						<br />
 
 						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
-							id="btnGrafico" value="Visualizar Gráfico">
+							id="btnGrafico" value="Visualizar Gráfico" update="growl">
 							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
 								value="#{relatorioMB.dataInicio}" />
 							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
