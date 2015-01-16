@@ -7,88 +7,85 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
-	<title>Relatório Sustentação</title>
+	<title>Cadastro de Relatório</title>
 </h:head>
 <h:body>
 	<ui:composition template="template.xhtml">
 		<ui:define name="layout-center">
 			<h:outputScript name="calendario_pt_BR.js" library="js" />
-			<p:layoutUnit position="center" header="Cadastro">
-				<p:separator />
-				<h:form id="form">
-					<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
-					<div id="geral" align="left">
-						<h:panelGrid columns="2" id="grid">
-							<p:outputLabel value="#{msg['campo.data']}" for="data" />
-							<p:calendar value="#{cadastroRelatorioMB.relatorio.data}"
-								id="data" pattern="dd/MM/yyyy" required="true"
-								requiredMessage="Data: Campo Obrigatório" mask="true"
-								locale="pt_BR" showButtonPanel="true" navigator="true" />
+			<h:form id="form">
+				<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
+				<div id="geral" align="left">
+					<h:panelGrid columns="2" id="grid">
+						<p:outputLabel id="data" value="#{msg['campo.data']}" />
+						<p:calendar for="data"
+							value="#{cadastroRelatorioMB.relatorio.data}"
+							pattern="dd/MM/yyyy" required="true"
+							requiredMessage="Data: Campo Obrigatório" mask="true"
+							locale="pt_BR" showButtonPanel="true" navigator="true" size="17" />
 
-							<p:outputLabel value="#{msg['campo.concluido']}" for="concluido" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosConcluidos}"
-								id="concluido" required="true"
-								requiredMessage="Concluído: Campo obrigatório" mask="99" />
+						<p:outputLabel id="concluido" value="#{msg['campo.concluido']}" />
+						<p:inputMask for="concluido"
+							value="#{cadastroRelatorioMB.relatorio.chamadosConcluidos}"
+							required="true" requiredMessage="Concluído: Campo obrigatório"
+							mask="99" size="17" />
 
-							<p:outputLabel value="#{msg['campo.homologacao']}"
-								for="homologacao" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosEmHomologacao}"
-								id="homologacao" required="true"
-								requiredMessage="Homologação: Campo obrigatório" mask="99" />
+						<p:outputLabel id="homologacao"
+							value="#{msg['campo.homologacao']}" />
+						<p:inputMask for="homologacao"
+							value="#{cadastroRelatorioMB.relatorio.chamadosEmHomologacao}"
+							required="true" requiredMessage="Homologação: Campo obrigatório"
+							mask="99" size="17" />
 
-							<p:outputLabel value="#{msg['campo.aguardando']}"
-								for="aguardando" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosEmAguardo}"
-								id="aguardando" required="true"
-								requiredMessage="Aguardando: Campo obrigatório" mask="99" />
+						<p:outputLabel id="aguardando" value="#{msg['campo.aguardando']}" />
+						<p:inputMask for="aguardando"
+							value="#{cadastroRelatorioMB.relatorio.chamadosEmAguardo}"
+							required="true" requiredMessage="Aguardando: Campo obrigatório"
+							mask="99" size="17" />
 
-							<p:outputLabel value="#{msg['campo.aguardando_rdm']}"
-								for="aguardando_rdm" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosAguardandoRdm}"
-								id="aguardando_rdm" required="true"
-								requiredMessage="Aguardando RDM: Campo obrigatório" mask="99" />
+						<p:outputLabel id="aguardando_rdm"
+							value="#{msg['campo.aguardando_rdm']}" />
+						<p:inputMask for="aguardando_rdm"
+							value="#{cadastroRelatorioMB.relatorio.chamadosAguardandoRdm}"
+							required="true"
+							requiredMessage="Aguardando RDM: Campo obrigatório" mask="99"
+							size="17" />
 
-							<p:outputLabel value="#{msg['campo.desenvolvimento']}"
-								for="desenvolvimento" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosEmDesenvolvimento}"
-								id="desenvolvimento" required="true"
-								requiredMessage="Desenvolvimento: Campo obrigatório" mask="99" />
+						<p:outputLabel id="desenvolvimento"
+							value="#{msg['campo.desenvolvimento']}" />
+						<p:inputMask for="desenvolvimento"
+							value="#{cadastroRelatorioMB.relatorio.chamadosEmDesenvolvimento}"
+							required="true"
+							requiredMessage="Desenvolvimento: Campo obrigatório" mask="99"
+							size="17" />
 
-							<p:outputLabel value="#{msg['campo.aberto']}" for="aberto" />
-							<p:inputMask
-								value="#{cadastroRelatorioMB.relatorio.chamadosEmAberto}"
-								id="aberto" required="true"
-								requiredMessage="Aberto: Campo obrigatório" mask="99" />
+						<p:outputLabel id="aberto" value="#{msg['campo.aberto']}" />
+						<p:inputMask for="aberto"
+							value="#{cadastroRelatorioMB.relatorio.chamadosEmAberto}"
+							required="true" requiredMessage="Aberto: Campo obrigatório"
+							mask="99" size="17" />
 
-							<p:outputLabel value="#{msg['campo.equipe']}" for="campo_equipes" />
-							<p:selectOneMenu value="#{cadastroRelatorioMB.equipeEscolhida}"
-								id="campo_equipes" required="true"
-								requiredMessage="Equipe: Selecione uma Equipe">
-								<f:selectItems
-									value="#{cadastroRelatorioMB.listaDescricaoEquipes}" />
-							</p:selectOneMenu>
+						<p:outputLabel id="campo_equipes" value="#{msg['campo.equipe']}" />
+						<p:selectOneMenu for="campo_equipes"
+							value="#{cadastroRelatorioMB.equipeEscolhida}" required="true"
+							requiredMessage="Equipe: Selecione uma Equipe">
+							<f:selectItem itemValue="" itemLabel="SELECIONE" escape="true" />
+							<f:selectItems
+								value="#{cadastroRelatorioMB.listaDescricaoEquipes}" />
+						</p:selectOneMenu>
 
-							<h:outputText value="&#160;" />
-							<h:outputText value="&#160;" />
-							<br />
-							<h:panelGroup>
-								<p:commandButton id="btnSalvar" value="#{msg['botao.salvar']}"
-									update="grid growl"
-									action="#{cadastroRelatorioMB.salvarRelatorio}" />
-								<p:commandButton id="btnLimpar" value="#{msg['botao.limpar']}"
-									update="grid growl"
-									action="#{cadastroRelatorioMB.limparRelatorio}"
-									resetValues="true" immediate="true" />
-							</h:panelGroup>
-						</h:panelGrid>
-					</div>
-				</h:form>
-			</p:layoutUnit>
+						<h:outputText value="&#160;" />
+						<br />
+						<p:commandButton id="btnSalvar" value="#{msg['botao.salvar']}"
+							update="grid growl"
+							action="#{cadastroRelatorioMB.salvarRelatorio}" />
+						<p:commandButton id="btnLimpar" value="#{msg['botao.limpar']}"
+							update="grid growl"
+							action="#{cadastroRelatorioMB.limparRelatorio}"
+							resetValues="true" immediate="true" />
+					</h:panelGrid>
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

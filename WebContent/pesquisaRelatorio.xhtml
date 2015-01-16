@@ -13,104 +13,105 @@
 	<ui:composition template="template.xhtml">
 		<ui:define name="layout-center">
 			<h:outputScript name="calendario_pt_BR.js" library="js" />
-			<p:layoutUnit position="center">
-				<div style="text-align: center;">
-					<h:form id="form">
-						<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
-						<h:panelGrid columns="6">
-							<p:outputLabel value="De: " />
-							<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
-								mask="true" pattern="dd/MM/yyyy" required="true"
-								requiredMessage="Escolha a data Inicio" locale="pt_BR"
-								showButtonPanel="true" navigator="true" />
+			<div style="text-align: center;">
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
+					<p:toolbar>
+						<p:toolbarGroup align="center">
+							<h:panelGrid columns="6">
+								<p:outputLabel value="DE:" />
+								<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
+									mask="true" pattern="dd/MM/yyyy" required="true"
+									requiredMessage="Escolha a data Inicio" locale="pt_BR"
+									showButtonPanel="true" navigator="true" />
 
-							<p:outputLabel value=" até " />
-							<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
-								mask="true" pattern="dd/MM/yyyy" required="true"
-								requiredMessage="Escolha a data Final" locale="pt_BR"
-								showButtonPanel="true" navigator="true" />
+								<p:outputLabel value="ATÉ" />
+								<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
+									mask="true" pattern="dd/MM/yyyy" required="true"
+									requiredMessage="Escolha a data Final" locale="pt_BR"
+									showButtonPanel="true" navigator="true" />
 
-							<h:outputLabel value="Equipe: " for="equipe" />
-							<p:selectCheckboxMenu id="equipe" label="Selecione "
-								filter="true" filterMatchMode="startsWith"
-								value="#{relatorioMB.equipes}" required="true"
-								requiredMessage="Escolha ao menos uma Equipe">
-								<f:selectItems id="descricao"
-									value="#{relatorioMB.listaDescricaoEquipes}" />
-							</p:selectCheckboxMenu>
-						</h:panelGrid>
-						<p:commandButton id="btnPesquisar"
-							action="#{relatorioMB.buscarRelatorio}"
-							value="#{msg['botao.pesquisar']}" update="growl" ajax="false" />
+								<h:outputLabel value="EQUIPE: " for="equipe" />
+								<p:selectCheckboxMenu id="equipe" label="SELECIONE"
+									filter="true" filterMatchMode="startsWith"
+									value="#{relatorioMB.equipes}" required="true"
+									requiredMessage="Escolha uma Equipe">
+									<f:selectItems id="descricao"
+										value="#{relatorioMB.listaDescricaoEquipes}" />
+								</p:selectCheckboxMenu>
+							</h:panelGrid>
+						</p:toolbarGroup>
+					</p:toolbar>
+					<br />
+					<p:commandButton id="btnPesquisar"
+						action="#{relatorioMB.buscarRelatorio}"
+						value="#{msg['botao.pesquisar']}" update="growl" ajax="false" />
+					<br />
+					<br />
 
-						<br />
-						<br />
+					<p:dataTable id="tblRelatorio"
+						value="#{relatorioMB.listaRelatorio}" var="relatorio"
+						paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
+						emptyMessage="Não foram gerados relatórios dentro do período especificado">
 
-						<p:dataTable id="tblRelatorio"
-							value="#{relatorioMB.listaRelatorio}" var="relatorio"
-							paginator="true" rows="25" rowsPerPageTemplate="10,25,45"
-							emptyMessage="Não foram gerados relatórios dentro do período especificado">
+						<p:column id="data" headerText="#{msg['coluna.data']}"
+							sortBy="#{relatorio.data}">
+							<p:outputLabel value="#{relatorio.data}" for="data">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+							</p:outputLabel>
+						</p:column>
 
-							<p:column id="data" headerText="#{msg['coluna.data']}"
-								sortBy="#{relatorio.data}">
-								<p:outputLabel value="#{relatorio.data}" for="data">
-									<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-								</p:outputLabel>
-							</p:column>
-
-							<p:column id="concluido" headerText="#{msg['coluna.concluido']}"
-								sortBy="#{relatorio.chamadosConcluidos}">
+						<p:column id="concluido" headerText="#{msg['coluna.concluido']}"
+							sortBy="#{relatorio.chamadosConcluidos}">
 								#{relatorio.chamadosConcluidos}
 							</p:column>
 
-							<p:column id="homologacao"
-								headerText="#{msg['coluna.homologacao']}"
-								sortBy="#{relatorio.chamadosEmHomologacao}">
+						<p:column id="homologacao"
+							headerText="#{msg['coluna.homologacao']}"
+							sortBy="#{relatorio.chamadosEmHomologacao}">
 								#{relatorio.chamadosEmHomologacao}
 							</p:column>
 
-							<p:column id="aguardando"
-								headerText="#{msg['coluna.aguardando']}"
-								sortBy="#{relatorio.chamadosEmAguardo}">
+						<p:column id="aguardando" headerText="#{msg['coluna.aguardando']}"
+							sortBy="#{relatorio.chamadosEmAguardo}">
 								#{relatorio.chamadosEmAguardo}
 							</p:column>
 
-							<p:column id="aguardando_rdm"
-								headerText="#{msg['coluna.aguardando_rdm']}"
-								sortBy="#{relatorio.chamadosAguardandoRdm}">
+						<p:column id="aguardando_rdm"
+							headerText="#{msg['coluna.aguardando_rdm']}"
+							sortBy="#{relatorio.chamadosAguardandoRdm}">
 								#{relatorio.chamadosAguardandoRdm}
 							</p:column>
 
-							<p:column id="desenvolvimento"
-								headerText="#{msg['coluna.desenvolvimento']}"
-								sortBy="#{relatorio.chamadosEmDesenvolvimento}">
+						<p:column id="desenvolvimento"
+							headerText="#{msg['coluna.desenvolvimento']}"
+							sortBy="#{relatorio.chamadosEmDesenvolvimento}">
 								#{relatorio.chamadosEmDesenvolvimento}
 							</p:column>
 
-							<p:column id="aberto" headerText="#{msg['coluna.aberto']}"
-								sortBy="#{relatorio.chamadosEmAberto}">
+						<p:column id="aberto" headerText="#{msg['coluna.aberto']}"
+							sortBy="#{relatorio.chamadosEmAberto}">
 								#{relatorio.chamadosEmAberto}
 							</p:column>
 
-							<p:column id="equipe" headerText="#{msg['coluna.equipe']}"
-								sortBy="#{relatorio.descricao.descricao}">
+						<p:column id="equipe" headerText="#{msg['coluna.equipe']}"
+							sortBy="#{relatorio.descricao.descricao}">
 								#{relatorio.descricao.descricao}
 							</p:column>
-						</p:dataTable>
-
-						<br />
-						<br />
-
-						<p:commandButton action="#{relatorioMB.mostrarGrafico}"
-							id="btnGrafico" value="Visualizar Gráfico" update="growl">
-							<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
-								value="#{relatorioMB.dataInicio}" />
-							<f:setPropertyActionListener target="#{flash.keep.dataFim}"
-								value="#{relatorioMB.dataFim}" />
-						</p:commandButton>
-					</h:form>
-				</div>
-			</p:layoutUnit>
+					</p:dataTable>
+					<br />
+					<p:commandButton id="btnGrafico"
+						action="#{relatorioMB.mostrarGrafico}" value="Visualizar Gráfico"
+						update="growl">
+						<f:setPropertyActionListener target="#{flash.keep.dataInicio}"
+							value="#{relatorioMB.dataInicio}" />
+						<f:setPropertyActionListener target="#{flash.keep.dataFim}"
+							value="#{relatorioMB.dataFim}" />
+					</p:commandButton>
+					<br />
+					<br />
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

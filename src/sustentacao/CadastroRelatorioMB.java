@@ -53,6 +53,7 @@ public class CadastroRelatorioMB {
 	 */
 	public void limparRelatorio() {
 		relatorio = new Relatorio();
+		equipeEscolhida = "";
 	}
 
 	/**

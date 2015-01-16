@@ -2,30 +2,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
-	<title>Template</title>
+	<title>Projeto Sustentação</title>
 </h:head>
 <h:body>
-	<p:layout>
-		<p:layoutUnit position="west" size="180">
-			<p:menu style="border: none;">
-				<p:submenu label="Menu">
-					<p:menuitem value="Cadastrar Relatório" outcome="cadastroRelatorio"
-						icon="ui-icon-disk" />
-					<p:menuitem value="Consultar" outcome="pesquisaRelatorio"
-						icon="ui-icon-note" />
-					<p:menuitem value="Grafico" outcome="grafico" icon="ui-icon-image" />
-					<p:menuitem value="Cadastrar Equipe" outcome="cadastroEquipe"
-						disabled="true" />
-				</p:submenu>
-			</p:menu>
-		</p:layoutUnit>
-		<ui:insert name="layout-center">
+	<p:menubar autoDisplay="false" style="border: none;">
+		<p:submenu label="Cadastrar" icon="ui-icon-disk">
+			<p:menuitem value="Relatório" outcome="cadastroRelatorio" />
+			<p:menuitem value="Equipe" outcome="cadastroEquipe" />
+		</p:submenu>
+		<p:submenu label="Pesquisar" icon="ui-icon-note">
+			<p:menuitem value="Relatório" outcome="pesquisaRelatorio" />
+		</p:submenu>
+	</p:menubar>
+	<p:separator style="height: 2px"/>
+	<ui:insert name="layout-center">
 
-		</ui:insert>
-	</p:layout>
+	</ui:insert>
 </h:body>
 </html>

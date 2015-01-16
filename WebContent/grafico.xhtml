@@ -12,16 +12,14 @@
 <h:body>
 	<ui:composition template="template.xhtml">
 		<ui:define name="layout-center">
-			<p:layoutUnit position="center">
-				<h:form id="formGrafico" style="width:1200px;height:473px;">
-					<p:chart type="line" model="#{chartView.zoomModel}"
-						style="height:400px;width:1000px;" widgetVar="chart" />
-					<br />
-					<p:commandButton id="btnReset" type="button" value="Resetar Zoom"
-						icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"
-						style="align: center;" />
-				</h:form>
-			</p:layoutUnit>
+			<h:form id="formGrafico" style="width:1200px;height:473px;">
+				<p:chart type="line" model="#{chartView.zoomModel}"
+					style="height:400px;width:1000px;" widgetVar="chart" />
+				<br />
+				<p:commandButton id="btnReset" type="button" value="Resetar Zoom"
+					icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"
+					style="align: center;" />
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
