@@ -27,11 +27,9 @@ public class RelatorioDAO implements Serializable {
 	/**
 	 * Pesquisa no banco de acordo com filtro informado
 	 * 
-	 * @param dataInicio
-	 *            primeiro filtro de pesquisa
+	 * @param dataInicio primeiro filtro de pesquisa
 	 * 
-	 * @param dataFim
-	 *            segundo filtro de pesquisa
+	 * @param dataFim segundo filtro de pesquisa
 	 * 
 	 * @return lista de Relatorio
 	 */
@@ -60,8 +58,7 @@ public class RelatorioDAO implements Serializable {
 	/**
 	 * Recupera os dados para serem armazenados no banco
 	 * 
-	 * @param dados
-	 *            inseridos na tela pelo usuario
+	 * @param dados inseridos na tela pelo usuario
 	 */
 	public void insert(Relatorio relatorio) {
 		EntityManager em = JPAUtil.getEntityManager();

@@ -9,7 +9,6 @@ public class EquipeMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Equipe equipe = new Equipe();
-	
 
 	public Equipe getEquipe() {
 		return equipe;
@@ -18,6 +17,4 @@ public class EquipeMB implements Serializable {
 	public void setEquipe(Equipe equipe) {
 		this.equipe = equipe;
 	}
-	
-	 
 }

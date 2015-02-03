@@ -120,5 +120,4 @@ public class Relatorio implements Serializable {
 	public void setDescricao(Equipe descricao) {
 		this.descricao = descricao;
 	}
-
 }

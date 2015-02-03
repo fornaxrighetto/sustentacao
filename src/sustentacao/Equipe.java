@@ -24,7 +24,7 @@ public class Equipe implements Serializable {
 
 	@Column(name = "status_equipe")
 	private String status;
-	
+
 	public Long getId() {
 		return id;
 	}

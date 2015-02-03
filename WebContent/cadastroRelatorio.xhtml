@@ -22,26 +22,26 @@
 							value="#{cadastroRelatorioMB.relatorio.data}"
 							pattern="dd/MM/yyyy" required="true"
 							requiredMessage="Data: Campo Obrigatório" mask="true"
-							locale="pt_BR" showButtonPanel="true" navigator="true" size="17" />
+							locale="pt_BR" showButtonPanel="true" navigator="true" size="18" />
 
 						<p:outputLabel id="concluido" value="#{msg['campo.concluido']}" />
 						<p:inputMask for="concluido"
 							value="#{cadastroRelatorioMB.relatorio.chamadosConcluidos}"
 							required="true" requiredMessage="Concluído: Campo obrigatório"
-							mask="99" size="17" />
+							mask="99" size="18" />
 
 						<p:outputLabel id="homologacao"
 							value="#{msg['campo.homologacao']}" />
 						<p:inputMask for="homologacao"
 							value="#{cadastroRelatorioMB.relatorio.chamadosEmHomologacao}"
 							required="true" requiredMessage="Homologação: Campo obrigatório"
-							mask="99" size="17" />
+							mask="99" size="18" />
 
 						<p:outputLabel id="aguardando" value="#{msg['campo.aguardando']}" />
 						<p:inputMask for="aguardando"
 							value="#{cadastroRelatorioMB.relatorio.chamadosEmAguardo}"
 							required="true" requiredMessage="Aguardando: Campo obrigatório"
-							mask="99" size="17" />
+							mask="99" size="18" />
 
 						<p:outputLabel id="aguardando_rdm"
 							value="#{msg['campo.aguardando_rdm']}" />
@@ -49,7 +49,7 @@
 							value="#{cadastroRelatorioMB.relatorio.chamadosAguardandoRdm}"
 							required="true"
 							requiredMessage="Aguardando RDM: Campo obrigatório" mask="99"
-							size="17" />
+							size="18" />
 
 						<p:outputLabel id="desenvolvimento"
 							value="#{msg['campo.desenvolvimento']}" />
@@ -57,13 +57,13 @@
 							value="#{cadastroRelatorioMB.relatorio.chamadosEmDesenvolvimento}"
 							required="true"
 							requiredMessage="Desenvolvimento: Campo obrigatório" mask="99"
-							size="17" />
+							size="18" />
 
 						<p:outputLabel id="aberto" value="#{msg['campo.aberto']}" />
 						<p:inputMask for="aberto"
 							value="#{cadastroRelatorioMB.relatorio.chamadosEmAberto}"
 							required="true" requiredMessage="Aberto: Campo obrigatório"
-							mask="99" size="17" />
+							mask="99" size="18" />
 
 						<p:outputLabel id="campo_equipes" value="#{msg['campo.equipe']}" />
 						<p:selectOneMenu for="campo_equipes"

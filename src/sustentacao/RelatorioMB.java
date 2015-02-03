@@ -28,8 +28,6 @@ public class RelatorioMB implements Serializable {
 
 	private RelatorioSB relatorioSB = new RelatorioSB();
 
-	private Equipe equipe = new Equipe();
-
 	private List<String> equipes = new ArrayList<String>();
 
 	private List<Equipe> listaEquipe;
@@ -97,14 +95,6 @@ public class RelatorioMB implements Serializable {
 
 	public void setRelatorioSB(RelatorioSB relatorioSB) {
 		this.relatorioSB = relatorioSB;
-	}
-
-	public Equipe getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
 	}
 
 	public List<String> getEquipes() {
