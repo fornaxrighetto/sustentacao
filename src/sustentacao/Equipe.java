@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -19,10 +18,8 @@ public class Equipe implements Serializable {
 	@Column(name = "id_equipe")
 	private Long id;
 
-	@JoinColumn(name = "id_relatorio")
 	private String descricao;
 
-	@Column(name = "status_equipe")
 	private String status;
 
 	public Long getId() {

@@ -17,35 +17,38 @@
 				<h:form id="form">
 					<p:growl id="growl" showDetail="false" sticky="false" life="4000" />
 					<p:toolbar>
-						<p:toolbarGroup align="center">
-							<h:panelGrid columns="6">
-								<p:outputLabel value="DE:" />
-								<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
-									mask="true" pattern="dd/MM/yyyy" required="true"
-									requiredMessage="Escolha a data Inicio" locale="pt_BR"
-									showButtonPanel="true" navigator="true" />
+						<f:facet name="left">
+							<p:toolbarGroup>
+								<h:panelGrid columns="6">
+									<p:outputLabel value="DE:" />
+									<p:calendar id="dataInicio" value="#{relatorioMB.dataInicio}"
+										mask="true" pattern="dd/MM/yyyy" required="true"
+										requiredMessage="Escolha a data Inicio" locale="pt_BR"
+										showButtonPanel="true" navigator="true" />
 
-								<p:outputLabel value="ATÉ" />
-								<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
-									mask="true" pattern="dd/MM/yyyy" required="true"
-									requiredMessage="Escolha a data Final" locale="pt_BR"
-									showButtonPanel="true" navigator="true" />
+									<p:outputLabel value="ATÉ" />
+									<p:calendar id="dataFim" value="#{relatorioMB.dataFim}"
+										mask="true" pattern="dd/MM/yyyy" required="true"
+										requiredMessage="Escolha a data Final" locale="pt_BR"
+										showButtonPanel="true" navigator="true" />
 
-								<h:outputLabel value="EQUIPE: " for="equipe" />
-								<p:selectCheckboxMenu id="equipe" label="SELECIONE"
-									filter="true" filterMatchMode="startsWith"
-									value="#{relatorioMB.equipes}" required="true"
-									requiredMessage="Escolha uma Equipe">
-									<f:selectItems id="descricao"
-										value="#{relatorioMB.listaDescricaoEquipes}" />
-								</p:selectCheckboxMenu>
-							</h:panelGrid>
-						</p:toolbarGroup>
+									<h:outputLabel value="EQUIPE: " for="equipe" />
+									<p:selectCheckboxMenu id="equipe" label="SELECIONE"
+										filter="true" filterMatchMode="startsWith"
+										value="#{relatorioMB.equipes}" required="true"
+										requiredMessage="Escolha uma Equipe">
+										<f:selectItems id="descricao"
+											value="#{relatorioMB.listaDescricaoEquipes}" />
+									</p:selectCheckboxMenu>
+								</h:panelGrid>
+							</p:toolbarGroup>
+						</f:facet>
 					</p:toolbar>
 					<br />
 					<p:commandButton id="btnPesquisar"
 						action="#{relatorioMB.buscarRelatorio}"
-						value="#{msg['botao.pesquisar']}" update="growl" ajax="false" />
+						value="#{msg['botao.pesquisar']}" update="growl tblRelatorio"
+						ajax="false" />
 					<br />
 					<br />
 
