@@ -37,7 +37,7 @@
 										filter="true" filterMatchMode="startsWith"
 										value="#{relatorioMB.equipes}" required="true"
 										requiredMessage="Escolha uma Equipe">
-										<f:selectItems id="descricao"
+										<f:selectItems id="equipes"
 											value="#{relatorioMB.listaDescricaoEquipes}" />
 									</p:selectCheckboxMenu>
 								</h:panelGrid>
@@ -98,8 +98,8 @@
 							</p:column>
 
 						<p:column id="equipe" headerText="#{msg['coluna.equipe']}"
-							sortBy="#{relatorio.descricao.descricao}">
-								#{relatorio.descricao.descricao}
+							sortBy="#{relatorio.equipe.descricao}">
+								#{relatorio.equipe.descricao}
 							</p:column>
 					</p:dataTable>
 					<br />

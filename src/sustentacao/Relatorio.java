@@ -48,8 +48,8 @@ public class Relatorio implements Serializable {
 	private int chamadosEmAberto;
 
 	@OneToOne
-	@JoinColumn(name = "descricao")
-	private Equipe descricao;
+	@JoinColumn(name = "equipe")
+	private Equipe equipe;
 
 	public Long getId() {
 		return this.id;
@@ -115,11 +115,11 @@ public class Relatorio implements Serializable {
 		this.chamadosEmAberto = chamadosEmAberto;
 	}
 
-	public Equipe getDescricao() {
-		return descricao;
+	public Equipe getEquipe() {
+		return equipe;
 	}
 
-	public void setDescricao(Equipe descricao) {
-		this.descricao = descricao;
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
 	}
 }

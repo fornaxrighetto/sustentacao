@@ -38,7 +38,7 @@ public class CadastroRelatorioMB {
 	public void salvarRelatorio() {
 		for (Equipe equipe : listaEquipe) {
 			if (equipe.getDescricao().equals(equipeEscolhida)) {
-				this.relatorio.setDescricao(equipe);
+				this.relatorio.setEquipe(equipe);
 				relatorioSB.insert(relatorio);
 				msgSalvo();
 			}
